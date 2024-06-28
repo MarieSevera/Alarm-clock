@@ -3,9 +3,10 @@ import pygame
 from tkinter import *
 
 # colors
-red = '#570400'
-black = '#000'
+purple = '#80247f'
+turquoise = '#005f64'
 white = '#fff'
+
 
 pygame.init()
 sound = pygame.mixer.Sound('sound/sound.wav')
@@ -13,8 +14,11 @@ sound = pygame.mixer.Sound('sound/sound.wav')
 main_font = 'Arial'
 
 window = Tk()
-window.minsize(300,200)
-window.config(bg=red)
+window.geometry('300x150')
+window.config(bg=purple)
+window.iconbitmap('icon/icon2.ico')
+window.title('Alarm clock')
+
 
 
 # funkce tlacitek
@@ -24,8 +28,7 @@ def sound_play():
 def sound_stop():
     sound.stop()
 
-actuell_time = datetime.datetime.now()
-print(f'22 + zitkani aktualniho casu {actuell_time}')
+
 # funkce labelu cas
 def get_current_time():
     actuell_time = datetime.datetime.now()
@@ -67,30 +70,30 @@ def snooze_button():
 
     
 # aktualni cas
-current_time = Label(window, bg= red, fg=white)
-current_time.pack()
+current_time = Label(window, bg=purple, fg=white)
+current_time.place(x= 70, y= 80)
 
 # HH
-hours = Entry(window, justify=CENTER, font=(main_font, 15))
-hours.pack()
+hours = Entry(window, justify=CENTER, font=(main_font, 15), width=4)
+hours.place(x=25, y=30)
 
 # :
-colon = Label(window, text=':')
-colon.pack()
+colon = Label(window, text=':', font=(main_font, 15), bg=purple, fg=white)
+colon.place(x=85, y=30)
 
 # MM
-minutes = Entry(window, justify=CENTER, font=(main_font, 15))
-minutes.pack()
+minutes = Entry(window, justify=CENTER, font=(main_font, 15), width=4)
+minutes.place(x=105, y=30)
 
 
 
 #!! vytvorit funkci na pripocitani 5 minut a spusteni znovu
-button_snooze = Button(window, text='Snooze', command=snooze_button)
-button_snooze.pack()
+button_snooze = Button(window, text='Snooze', command=snooze_button, bg=turquoise, fg=white, width=7)
+button_snooze.place(x=190, y=30)
 
 # vypnuti budiku
-button_stop = Button(window, text='Stop', command=sound_stop)
-button_stop.pack()
+button_stop = Button(window, text='Stop', command=sound_stop, bg=turquoise, fg=white, width=7)
+button_stop.place(x=190, y=80)
 
 
 update_time()
